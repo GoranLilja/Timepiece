@@ -13,6 +13,10 @@ class DateTests: XCTestCase {
     private var sample: Date {
         return Date(year: 2014, month: 8, day: 15, hour: 20, minute: 25, second: 43)
     }
+
+    private var sampleShortMonth: Date {
+        return Date(year: 2014, month: 6, day: 15, hour: 20, minute: 25, second: 43)
+    }
     
     func testYear() {
         XCTAssertEqual(sample.year, 2014)
@@ -210,5 +214,47 @@ class DateTests: XCTestCase {
     func testTimeString() {
         let sampleString = sample.timeString(in: .short)
         XCTAssertEqual(sampleString, "8:25 PM")
+    }
+
+    func testDaysInDecemberStatic() {
+        let returnedNumberOfDays = Date.daysIn(year: 2018, month: 12)
+        XCTAssertEqual(returnedNumberOfDays, 31)
+    }
+
+    func testDaysInNovemberStatic() {
+        let returnedNumberOfDays = Date.daysIn(year: 2018, month: 11)
+        XCTAssertEqual(returnedNumberOfDays, 30)
+    }
+
+    func testDaysInFebruaryStatic() {
+        let returnedNumberOfDays = Date.daysIn(year: 2018, month: 2)
+        XCTAssertEqual(returnedNumberOfDays, 28)
+    }
+
+    func testDaysInFebruaryLeapYearStatic() {
+        let returnedNumberOfDays = Date.daysIn(year: 2016, month: 2)
+        XCTAssertEqual(returnedNumberOfDays, 29)
+    }
+
+    func testDaysInDecember() {
+        let returnedNumberOfDays = sample.daysInMonth
+        XCTAssertEqual(returnedNumberOfDays, 31)
+    }
+
+    func testDaysInNovember() {
+        let returnedNumberOfDays = sampleShortMonth.daysInMonth
+        XCTAssertEqual(returnedNumberOfDays, 30)
+    }
+
+    func testDaysInFebruary() {
+        let targetDate = Date(year: 2018, month: 2, day: 14)
+        let returnedNumberOfDays = targetDate.daysInMonth
+        XCTAssertEqual(returnedNumberOfDays, 28)
+    }
+
+    func testDaysInFebruaryLeapYear() {
+        let targetDate = Date(year: 2016, month: 2, day: 14)
+        let returnedNumberOfDays = targetDate.daysInMonth
+        XCTAssertEqual(returnedNumberOfDays, 29)
     }
 }

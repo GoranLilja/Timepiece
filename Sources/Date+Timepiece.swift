@@ -49,6 +49,15 @@ extension Date {
         return dateComponents.weekday!
     }
 
+    /// Number of days in current month.
+    public var daysInMonth: Int {
+        let dateComponents = DateComponents(year: self.year, month: self.month)
+        let date = calendar.date(from: dateComponents)!
+
+        let range = calendar.range(of: .day, in: .month, for: date)!
+        return range.count
+    }
+
     private var dateComponents: DateComponents {
         return calendar.dateComponents([.era, .year, .month, .day, .hour, .minute, .second, .nanosecond, .weekday], from: self)
     }
@@ -330,5 +339,20 @@ extension Date {
     /// - returns: The created `String` instance.
     public func timeString(in timeStyle: DateFormatter.Style) -> String {
         return stringIn(dateStyle: .none, timeStyle: timeStyle)
+    }
+
+    /// Returns the number of days in the specified year and month.
+    ///
+    /// - parameter year: The year
+    /// - parameter month: The month
+    ///
+    /// - returns: The number of days in the specified year and month.
+    public static func daysIn(year: Int, month: Int) -> Int {
+        let dateComponents = DateComponents(year: year, month: month)
+        let calendar = Calendar.current
+        let date = calendar.date(from: dateComponents)!
+
+        let range = calendar.range(of: .day, in: .month, for: date)!
+        return range.count
     }
 }
