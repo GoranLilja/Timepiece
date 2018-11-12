@@ -51,11 +51,7 @@ extension Date {
 
     /// Number of days in current month.
     public var daysInMonth: Int {
-        let dateComponents = DateComponents(year: self.year, month: self.month)
-        let date = calendar.date(from: dateComponents)!
-
-        let range = calendar.range(of: .day, in: .month, for: date)!
-        return range.count
+        return Date.daysIn(year: self.year, month: self.month)
     }
 
     private var dateComponents: DateComponents {
