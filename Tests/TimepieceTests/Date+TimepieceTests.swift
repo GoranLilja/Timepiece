@@ -13,10 +13,6 @@ class DateTests: XCTestCase {
     private var sample: Date {
         return Date(year: 2014, month: 8, day: 15, hour: 20, minute: 25, second: 43)
     }
-
-    private var sampleShortMonth: Date {
-        return Date(year: 2014, month: 6, day: 15, hour: 20, minute: 25, second: 43)
-    }
     
     func testYear() {
         XCTAssertEqual(sample.year, 2014)
@@ -242,6 +238,7 @@ class DateTests: XCTestCase {
     }
 
     func testDaysInNovember() {
+        let sampleShortMonth = Date(year: 2014, month: 6, day: 15, hour: 20, minute: 25, second: 43)
         let returnedNumberOfDays = sampleShortMonth.daysInMonth
         XCTAssertEqual(returnedNumberOfDays, 30)
     }
